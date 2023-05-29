@@ -1,0 +1,11 @@
+.text-field {
+    -fx-max-width: 250px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 14px;
+}
+
+.text-field2 {
+    -fx-max-width: 125px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 14px;
+}

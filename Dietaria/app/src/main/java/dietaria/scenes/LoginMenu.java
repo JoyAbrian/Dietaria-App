@@ -1,7 +1,6 @@
 package dietaria.scenes;
 
 import dietaria.scenes.HomeScene;
-import dietaria.scenes.RegisterMenu2;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,17 +15,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class RegisterMenu1 {
+public class LoginMenu {
     private Stage stage;
 
-    public RegisterMenu1(Stage stage) {
+    public LoginMenu(Stage stage) {
         this.stage = stage;
     }
 
     public void show() {
         StackPane layout = new StackPane();
         Scene scene = new Scene(layout,340, 649);
-        ImageView bg = new ImageView("/images/bgRegister.png");
+        ImageView bg = new ImageView("/images/bgLogin.png");
         layout.getChildren().add(bg);
         bg.setFitHeight(scene.getHeight());
         bg.setFitWidth(scene.getWidth());
@@ -63,12 +62,6 @@ public class RegisterMenu1 {
         ImageView buttonLanjut = new ImageView("/images/btnNext.png");
         lanjut.setGraphic(buttonLanjut);
         lanjut.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
-        lanjut.setOnAction(e -> {
-            if (!username.getText().isEmpty() && !password.getText().isEmpty()) {
-                RegisterMenu2 lanjutan = new RegisterMenu2(stage);
-                lanjutan.show();
-            }
-        });
 
         Button balik = new Button();
         ImageView buttonBalik = new ImageView("/images/btnBack.png");
@@ -82,11 +75,12 @@ public class RegisterMenu1 {
         button.setAlignment(Pos.BOTTOM_CENTER);
         button.setPadding(new Insets(0, 0, 30, 0));
 
+
         VBox vBox1 = new VBox(vBox, button);
         vBox1.setSpacing(30);
         vBox1.setAlignment(Pos.CENTER);
         layout.getChildren().add(vBox1);
-
+        
         scene.getStylesheets().add("/style/TextFieldStyle.css");
         stage.setScene(scene);
         stage.show();

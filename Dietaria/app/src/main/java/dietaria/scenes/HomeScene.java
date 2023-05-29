@@ -1,6 +1,7 @@
 package dietaria.scenes;
 
 import dietaria.scenes.RegisterMenu1;
+import dietaria.scenes.LoginMenu;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -50,7 +51,10 @@ public class HomeScene {
         btnLogin.setGraphic(login);
         btnLogin.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         btnLogin.setPrefSize(200, 60);
-
+        btnLogin.setOnAction(e -> {
+            LoginMenu masuk = new LoginMenu(stage);
+            masuk.show();
+        });
         VBox homeButton = new VBox(btnRegister, btnLogin);
         homeButton.setSpacing(15);
         homeButton.setAlignment(Pos.BOTTOM_CENTER);
