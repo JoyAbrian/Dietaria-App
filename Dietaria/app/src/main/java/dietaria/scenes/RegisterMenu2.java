@@ -1,5 +1,6 @@
 package dietaria.scenes;
 
+import dietaria.models.login;
 import dietaria.scenes.RegisterMenu1;
 import dietaria.scenes.RegisterMenu3;
 
@@ -17,9 +18,11 @@ import javafx.stage.Stage;
 
 public class RegisterMenu2 {
     private Stage stage;
+    private login log;
 
-    public RegisterMenu2(Stage stage) {
+    public RegisterMenu2(Stage stage, login log) {
         this.stage = stage;
+        this.log = log;
     }
 
     public void show() {
@@ -82,10 +85,12 @@ public class RegisterMenu2 {
         cowok.setOnAction(e -> {
             cowok.setGraphic(ifCowo);
             cewek.setGraphic(cewe);
+            log.setMale(true);
         });
         cewek.setOnAction(e -> {
             cowok.setGraphic(cowo);
             cewek.setGraphic(ifCewe);
+            log.setMale(false);
         });
 
         HBox cowocewe = new HBox(cowok, cewek);
@@ -98,7 +103,12 @@ public class RegisterMenu2 {
         finish.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         finish.setOnAction(e -> {
             if (!fullname.getText().isEmpty() && !phoneNumber.getText().isEmpty() && !umur.getText().isEmpty() && !tinggi.getText().isEmpty() && !berat.getText().isEmpty()) {
-                RegisterMenu3 lanjut = new RegisterMenu3(stage);
+                log.setFullname(fullname.getText());
+                log.setUmur(Integer.parseInt(umur.getText()));
+                log.setBerat(Integer.parseInt(berat.getText()));
+                log.setTinggi(Integer.parseInt(tinggi.getText()));
+                
+                RegisterMenu3 lanjut = new RegisterMenu3(stage, log);
                 lanjut.show();
             }
         });

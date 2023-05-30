@@ -1,5 +1,7 @@
 package dietaria.scenes;
 
+import dietaria.dao.loginDao;
+import dietaria.models.login;
 import dietaria.scenes.HomeScene;
 
 import javafx.geometry.Insets;
@@ -62,7 +64,15 @@ public class LoginMenu {
         ImageView buttonLanjut = new ImageView("/images/btnNext.png");
         lanjut.setGraphic(buttonLanjut);
         lanjut.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
-
+        lanjut.setOnAction(e -> {
+            loginDao dao = new loginDao();
+            login user = dao.getUserByAuth(username.getText(), password.getText());
+            if (user == null) {
+                System.out.println("Gagal Login");
+            } else {
+                System.out.println(user.getFullname() + "Berhasil Login");
+            }
+        });
         Button balik = new Button();
         ImageView buttonBalik = new ImageView("/images/btnBack.png");
         balik.setGraphic(buttonBalik);

@@ -53,26 +53,26 @@ public class loginDao {
         }
     }
 
-    public login getUserByUsername(String username) {
+    public login getUserByAuth(String username, String password) {
         try {
-            String sql = "SELECT * FROM login WHERE username = ?";
+            String sql = "SELECT * FROM login WHERE username = ? AND password = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
+            pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
                 String fullname = rs.getString("fullname");
-                String password = rs.getString("password");
+                String pass = rs.getString("password");
                 boolean isMale = rs.getBoolean("isMale");
                 int umur = rs.getInt("umur");
                 int berat = rs.getInt("berat");
                 int tinggi = rs.getInt("tinggi");
-                return new login(fullname, username, password, isMale, umur, berat, tinggi);
+                return new login(fullname, username, pass, isMale, umur, berat, tinggi);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 }

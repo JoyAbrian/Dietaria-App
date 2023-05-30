@@ -8,7 +8,9 @@ public class login {
     private int umur;
     private int berat;
     private int tinggi;
-
+    
+    public login() {};
+    
     public login(String fullname, String username, String password, boolean isMale, int umur, int berat, int tinggi) {
         this.fullname = fullname;
         this.username = username;

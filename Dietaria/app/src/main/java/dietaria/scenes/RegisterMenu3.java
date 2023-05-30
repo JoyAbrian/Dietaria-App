@@ -1,5 +1,7 @@
 package dietaria.scenes;
 
+import dietaria.dao.loginDao;
+import dietaria.models.login;
 import dietaria.scenes.LoginMenu;
 
 import javafx.geometry.Insets;
@@ -14,8 +16,10 @@ import javafx.stage.Stage;
 public class RegisterMenu3 {
     private Stage stage;
 
-    public RegisterMenu3(Stage stage) {
+    public RegisterMenu3(Stage stage, login log) {
         this.stage = stage;
+        loginDao dao = new loginDao();
+        dao.saveUser(log);
     }
 
     public void show() {

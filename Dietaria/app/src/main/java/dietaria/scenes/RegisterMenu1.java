@@ -1,5 +1,7 @@
 package dietaria.scenes;
 
+import dietaria.dao.loginDao;
+import dietaria.models.login;
 import dietaria.scenes.HomeScene;
 import dietaria.scenes.RegisterMenu2;
 
@@ -65,7 +67,12 @@ public class RegisterMenu1 {
         lanjut.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         lanjut.setOnAction(e -> {
             if (!username.getText().isEmpty() && !password.getText().isEmpty()) {
-                RegisterMenu2 lanjutan = new RegisterMenu2(stage);
+                // loginDao dao = new loginDao();
+                // dao.saveUser(new login(null, null, null, false, 0, 0, 0));
+                login log = new login();
+                log.setUsername(username.getText());
+                log.setPassword(password.getText());
+                RegisterMenu2 lanjutan = new RegisterMenu2(stage, log);
                 lanjutan.show();
             }
         });
