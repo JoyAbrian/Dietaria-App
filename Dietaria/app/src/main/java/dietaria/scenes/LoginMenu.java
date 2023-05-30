@@ -70,9 +70,11 @@ public class LoginMenu {
             if (user == null) {
                 System.out.println("Gagal Login");
             } else {
-                System.out.println(user.getFullname() + "Berhasil Login");
+                PrimaryMenu primaryMenu = new PrimaryMenu(stage, user);
+                primaryMenu.show();
             }
         });
+
         Button balik = new Button();
         ImageView buttonBalik = new ImageView("/images/btnBack.png");
         balik.setGraphic(buttonBalik);
@@ -81,6 +83,7 @@ public class LoginMenu {
             HomeScene home = new HomeScene(stage);
             home.show();
         });
+
         VBox button = new VBox(lanjut, balik);
         button.setAlignment(Pos.BOTTOM_CENTER);
         button.setPadding(new Insets(0, 0, 30, 0));
