@@ -1,9 +1,9 @@
 package dietaria.scenes;
 
 import dietaria.dao.loginDao;
-import dietaria.models.login;
 import dietaria.scenes.HomeScene;
 import dietaria.scenes.RegisterMenu2;
+import dietaria.models.login;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
