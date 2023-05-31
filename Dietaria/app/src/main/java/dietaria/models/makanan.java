@@ -7,7 +7,7 @@ public class makanan {
     private int protein;
     private int karbohidrat;
     private int lemak;
-    
+
     public makanan(String nama, int porsi, int kalori, int protein, int karbohidrat, int lemak) {
         this.nama = nama;
         this.porsi = porsi;
