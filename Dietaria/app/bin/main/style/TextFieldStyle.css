@@ -9,3 +9,9 @@
     -fx-pref-height: 30px;
     -fx-font-size: 14px;
 }
+
+.text-field3 {
+    -fx-max-width: 90px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 14px;
+}
