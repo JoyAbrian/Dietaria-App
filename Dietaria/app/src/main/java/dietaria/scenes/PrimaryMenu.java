@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -33,8 +34,9 @@ public class PrimaryMenu {
         StackPane kalori = new StackPane();
         ImageView budget = new ImageView("/images/LayerBudget.png");
         kalori.getChildren().add(budget);
-        layout.getChildren().add(kalori);
 
+        VBox vBox = new VBox(kalori);
+        layout.getChildren().add(vBox);
 
         stage.setScene(scene);
         stage.show();
