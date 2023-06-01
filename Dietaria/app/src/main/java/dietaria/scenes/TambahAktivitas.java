@@ -1,5 +1,6 @@
 package dietaria.scenes;
 
+import dietaria.dao.aktivitasDao;
 import dietaria.models.aktivitas;
 import dietaria.scenes.ListAktivitas;
 
@@ -63,6 +64,16 @@ public class TambahAktivitas {
         ImageView btnTambah = new ImageView("/images/btnTambah.png");
         tambah.setGraphic(btnTambah);
         tambah.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
+        tambah.setOnAction(e -> {
+            String textNama = nama.getText();
+            int intKalori = Integer.parseInt(kalori.getText());
+            aktivitas active = new aktivitas(textNama, intKalori, 0);
+            if (aktivitasDao.saveAktivitas(active)) {
+                System.out.println("BERHASIL TAMBAH MAKANAN");
+                ListAktivitas listAktivitas = new ListAktivitas(stage);
+                listAktivitas.show();
+            }
+        });
 
         Button balik = new Button();
         ImageView buttonBalik = new ImageView("/images/btnBack.png");

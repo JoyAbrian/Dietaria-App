@@ -4,7 +4,7 @@ import dietaria.models.aktivitas;
 import dietaria.utils.DatabaseConfig;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,62 +13,69 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class aktivitasDao {
-    private Connection conn;
-    private Statement stmt;
+    private static Connection conn;
+    private static Statement stmt;
 
-    public aktivitasDao() {
-        conn = DatabaseConfig.getConnection();
-        setupTable();
-    }
+    // public makananDao() {
+    //     conn = DatabaseConfig.getConnection();
+    //     setupTable();
+    // }
 
-    private void setupTable() {
+    public static void getConnection() {
         try {
-            DatabaseMetaData meta = conn.getMetaData();
-            ResultSet rs = meta.getTables(null, null, "aktivitass", null);
-            if (!rs.next()) {
-                stmt = conn.createStatement();
-                String sql = "CREATE TABLE aktivitas " +
-                        "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        " nama TEXT NOT NULL UNIQUE," +
-                        " kaloriTerbakar INTEGER NOT NULL, " +
-                        " durasi INTEGER NOT NULL)";
-                stmt.executeUpdate(sql);
-            }
-        }catch (SQLException e) {
+            conn = DriverManager.getConnection("jdbc:sqlite:db/dietaria.db");
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public List<aktivitas> getAll() throws SQLException {
+    private static void setupTableAktivitas() {
+        getConnection();
         try {
-            List<aktivitas> listaktivitas = new ArrayList<>();
             stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM aktivitass");
+            String sql = "CREATE TABLE IF NOT EXISTS aktivitas " +
+                    "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    " nama TEXT NOT NULL, " +
+                    " kaloriTerbakar INTEGER NOT NULL, " +
+                    " durasi INTEGER NOT NULL, ";
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean saveAktivitas(aktivitas aktivitas) {
+        setupTableAktivitas();
+        try {
+            String sql = "INSERT INTO makanan(nama, kaloriTerbakar, durasi) VALUES (?, ?, ?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, aktivitas.getNama());
+            pstmt.setInt(2, aktivitas.getKaloriTerbakar());
+            pstmt.setInt(3, aktivitas.getDurasi());
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static List<aktivitas> getAllAktivitas() {
+        List<aktivitas> aktivitasList = new ArrayList<>();
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM aktivitas");
             while (rs.next()) {
                 String nama = rs.getString("nama");
                 int kaloriTerbakar = rs.getInt("kaloriTerbakar");
                 int durasi = rs.getInt("durasi");
-                listaktivitas.add(new aktivitas(nama, kaloriTerbakar, durasi));
-            }
-            return listaktivitas;
-        } catch (SQLException e) {
-            throw new SQLException();
-        }
-    }
-
-    public void syncData(List<aktivitas> aktivitass) {
-        try {
-            stmt.executeUpdate("DELETE FROM aktivitass");
-            String sql = "INSERT INTO aktivitass(nama, kaloriTerbakar, durasi) VALUES (?, ?, ?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            for (aktivitas activity : aktivitass) {
-                pstmt.setString(1, activity.getNama());
-                pstmt.setInt(2, activity.getKaloriTerbakar());
-                pstmt.setInt(3, activity.getDurasi());
-                pstmt.executeUpdate();
+                aktivitasList.add(new aktivitas(nama, kaloriTerbakar, durasi));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return aktivitasList;
     }
 }

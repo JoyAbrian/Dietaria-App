@@ -78,19 +78,19 @@ public class TambahMakanan {
         tambah.setGraphic(btnTambah);
         tambah.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         tambah.setOnAction(e -> {
-            String textNama = name.getText();
-            int intKalori = Integer.parseInt(kalori.getText());
-            int intProtein = Integer.parseInt(protein.getText());
-            int intKarbo = Integer.parseInt(karbo.getText());
-            int intLemak = Integer.parseInt(lemak.getText());
-            makanan food = new makanan(textNama, 0, intKalori, intProtein, intKarbo, intLemak);
-            if (makananDao.saveMakanan(food)) {
-                System.out.println("BERHASIL TAMBAH MAKANAN");
-            } else {
-                System.out.println("ADA INPUTAN YANG KOSONG");
-            }
-            ListMakanan listMakanan = new ListMakanan(stage);
-            listMakanan.show();
+                String textNama = name.getText();
+                int intKalori = Integer.parseInt(kalori.getText());
+                int intProtein = Integer.parseInt(protein.getText());
+                int intKarbo = Integer.parseInt(karbo.getText());
+                int intLemak = Integer.parseInt(lemak.getText());
+                makanan food = new makanan(textNama, 0, intKalori, intProtein, intKarbo, intLemak);
+                if (makananDao.saveMakanan(food)) {
+                    System.out.println("BERHASIL TAMBAH MAKANAN");
+                    ListMakanan listMakanan = new ListMakanan(stage);
+                    listMakanan.show();    
+                } else {
+                    System.out.println("ADA INPUTAN YANG KOSONG");
+                }
         });
 
         Button balik = new Button();
