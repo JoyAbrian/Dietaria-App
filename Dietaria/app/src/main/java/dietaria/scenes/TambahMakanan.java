@@ -1,6 +1,9 @@
 package dietaria.scenes;
 
+import dietaria.dao.makananDao;
 import dietaria.models.makanan;
+import dietaria.scenes.ListMakanan;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -74,11 +77,30 @@ public class TambahMakanan {
         ImageView btnTambah = new ImageView("/images/btnTambah.png");
         tambah.setGraphic(btnTambah);
         tambah.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
+        tambah.setOnAction(e -> {
+            String textNama = name.getText();
+            int intKalori = Integer.parseInt(kalori.getText());
+            int intProtein = Integer.parseInt(protein.getText());
+            int intKarbo = Integer.parseInt(karbo.getText());
+            int intLemak = Integer.parseInt(lemak.getText());
+            makanan food = new makanan(textNama, 0, intKalori, intProtein, intKarbo, intLemak);
+            if (makananDao.saveMakanan(food)) {
+                System.out.println("BERHASIL TAMBAH MAKANAN");
+            } else {
+                System.out.println("ADA INPUTAN YANG KOSONG");
+            }
+            ListMakanan listMakanan = new ListMakanan(stage);
+            listMakanan.show();
+        });
 
         Button balik = new Button();
         ImageView buttonBalik = new ImageView("/images/btnBack.png");
         balik.setGraphic(buttonBalik);
         balik.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
+        balik.setOnAction(e -> {
+            ListMakanan listMakanan = new ListMakanan(stage);
+            listMakanan.show();
+        });
 
         VBox tombol = new VBox(tambah, balik);
         tombol.setPadding(new Insets(0, 0, 0, 0));
@@ -86,7 +108,7 @@ public class TambahMakanan {
         VBox everything = new VBox(namaMakanan, nutrisi, tombol);
         everything.setSpacing(15);
         everything.setAlignment(Pos.CENTER);
-        everything.setPadding(new Insets(15, 0, 0, 40));
+        everything.setPadding(new Insets(45, 0, 0, 40));
         layout.getChildren().addAll(everything);
 
         scene.getStylesheets().add("/style/TextFieldStyle.css");

@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
@@ -49,7 +50,7 @@ public class LoginMenu {
         
         Label passwordLabel = new Label("Password");
         passwordLabel.setFont(Font.font("Bitter", 15));
-        TextField password = new TextField();
+        PasswordField password = new PasswordField();
         password.setPromptText("Masukkan password anda...");
         password.setEffect(dropShadow);
         password.getStyleClass().add("text-field");

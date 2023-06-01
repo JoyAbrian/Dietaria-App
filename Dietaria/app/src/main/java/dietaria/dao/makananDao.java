@@ -4,6 +4,7 @@ import dietaria.models.makanan;
 import dietaria.utils.DatabaseConfig;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,15 +13,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class makananDao {
-    private Connection conn;
-    private Statement stmt;
+    private static Connection conn;
+    private static Statement stmt;
 
-    public makananDao() {
-        conn = DatabaseConfig.getConnection();
-        setupTable();
+    // public makananDao() {
+    //     conn = DatabaseConfig.getConnection();
+    //     setupTable();
+    // }
+
+    public static void getConnection() {
+        try {
+            conn = DriverManager.getConnection("jdbc:sqlite:db/dietaria.db");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void setupTable() {
+    private static void setupTableMakanan() {
+        getConnection();
         try {
             stmt = conn.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS makanan " +
@@ -37,7 +47,8 @@ public class makananDao {
         }
     }
 
-    public void saveMakanan(makanan makanan) {
+    public static boolean saveMakanan(makanan makanan) {
+        setupTableMakanan();
         try {
             String sql = "INSERT INTO makanan(nama, porsi, kalori, protein, karbohidrat, lemak) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -47,13 +58,17 @@ public class makananDao {
             pstmt.setInt(4, makanan.getProtein());
             pstmt.setInt(5, makanan.getKarbohidrat());
             pstmt.setInt(6, makanan.getLemak());
-            pstmt.executeUpdate();
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                return true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    public List<makanan> getAllMakanan() {
+    public static List<makanan> getAllMakanan() {
         List<makanan> makananList = new ArrayList<>();
         try {
             stmt = conn.createStatement();

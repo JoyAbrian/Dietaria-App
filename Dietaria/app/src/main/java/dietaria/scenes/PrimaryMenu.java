@@ -6,6 +6,7 @@ import dietaria.utils.target;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -37,21 +38,46 @@ public class PrimaryMenu {
 
         StackPane sarapan = new StackPane();
         ImageView pagi = new ImageView("/images/LayerSarapan.png");
+        sarapan.setOnMouseClicked(e -> {
+            ListMakanan listMakanan = new ListMakanan(stage);
+            listMakanan.show();
+        });
         sarapan.getChildren().add(pagi);
         
         StackPane makanSiang = new StackPane();
         ImageView siang = new ImageView("/images/LayerSiang.png");
+        makanSiang.setOnMouseClicked(e -> {
+            ListMakanan listMakanan = new ListMakanan(stage);
+            listMakanan.show();
+        });
         makanSiang.getChildren().add(siang);
         
         StackPane makanMalam = new StackPane();
         ImageView malam = new ImageView("/images/LayerMalam.png");
+        makanMalam.setOnMouseClicked(e -> {
+            ListMakanan listMakanan = new ListMakanan(stage);
+            listMakanan.show();
+        });
         makanMalam.getChildren().add(malam);
         
         StackPane cemilan = new StackPane();
         ImageView other = new ImageView("/images/LayerCemilan.png");
+        cemilan.setOnMouseClicked(e -> {
+            ListMakanan listMakanan = new ListMakanan(stage);
+            listMakanan.show();
+        });
         cemilan.getChildren().add(other);
 
-        VBox vBox = new VBox(kalori, sarapan, makanSiang, makanMalam, cemilan);
+        Button logout = new Button();
+        ImageView btnLogout = new ImageView("/images/btnLogout.png");
+        logout.setGraphic(btnLogout);
+        logout.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
+        logout.setOnAction(e -> {
+            HomeScene homeScene = new HomeScene(stage);
+            homeScene.show();
+        });
+
+        VBox vBox = new VBox(kalori, sarapan, makanSiang, makanMalam, cemilan, logout);
         vBox.setAlignment(Pos.CENTER);
         layout.getChildren().add(vBox);
 

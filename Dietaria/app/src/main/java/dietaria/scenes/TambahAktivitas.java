@@ -1,6 +1,8 @@
 package dietaria.scenes;
 
 import dietaria.models.aktivitas;
+import dietaria.scenes.ListAktivitas;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -44,7 +46,7 @@ public class TambahAktivitas {
         vBoxNama.setSpacing(5);
         vBoxNama.setPadding(new Insets(0, 0, 0, 45));
         
-        Label kaloriDibakar = new Label("Kalori Dibakar");
+        Label kaloriDibakar = new Label("Kalori Dibakar (per jam)");
         kaloriDibakar.setFont(Font.font("Bitter", 15));
         TextField kalori = new TextField();
         kalori.setPromptText("Kalori yang dibakar");
@@ -66,6 +68,10 @@ public class TambahAktivitas {
         ImageView buttonBalik = new ImageView("/images/btnBack.png");
         balik.setGraphic(buttonBalik);
         balik.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
+        balik.setOnAction(e -> {
+            ListAktivitas listAktivitas = new ListAktivitas(stage);
+            listAktivitas.show();
+        });
 
         VBox tombol = new VBox(tambah, balik);
         tombol.setPadding(new Insets(0, 0, 0, 40));
