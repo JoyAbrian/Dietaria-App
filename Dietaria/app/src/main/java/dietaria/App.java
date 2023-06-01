@@ -1,6 +1,9 @@
 package dietaria;
 
 import dietaria.scenes.HomeScene;
+import dietaria.scenes.ListAktivitas;
+import dietaria.scenes.ListMakanan;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 
