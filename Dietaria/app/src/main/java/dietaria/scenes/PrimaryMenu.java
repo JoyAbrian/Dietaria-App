@@ -35,7 +35,24 @@ public class PrimaryMenu {
         ImageView budget = new ImageView("/images/LayerBudget.png");
         kalori.getChildren().add(budget);
 
-        VBox vBox = new VBox(kalori);
+        StackPane sarapan = new StackPane();
+        ImageView pagi = new ImageView("/images/LayerSarapan.png");
+        sarapan.getChildren().add(pagi);
+        
+        StackPane makanSiang = new StackPane();
+        ImageView siang = new ImageView("/images/LayerSiang.png");
+        makanSiang.getChildren().add(siang);
+        
+        StackPane makanMalam = new StackPane();
+        ImageView malam = new ImageView("/images/LayerMalam.png");
+        makanMalam.getChildren().add(malam);
+        
+        StackPane cemilan = new StackPane();
+        ImageView other = new ImageView("/images/LayerCemilan.png");
+        cemilan.getChildren().add(other);
+
+        VBox vBox = new VBox(kalori, sarapan, makanSiang, makanMalam, cemilan);
+        vBox.setAlignment(Pos.CENTER);
         layout.getChildren().add(vBox);
 
         stage.setScene(scene);
