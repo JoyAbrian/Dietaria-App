@@ -2,6 +2,7 @@ package dietaria.scenes;
 
 import dietaria.models.login;
 import dietaria.models.makanan;
+import dietaria.models.totalNutrisi;
 import dietaria.utils.nutrisi;
 import dietaria.utils.target;
 import javafx.geometry.Insets;
@@ -9,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -50,13 +52,19 @@ public class PrimaryMenu {
         halo.setPadding(new Insets(0, 0, 12, 0));
         welcum.getChildren().add(halo);
 
+        totalNutrisi nutrisi = new totalNutrisi();
+
         StackPane kalori = new StackPane();
         ImageView budget = new ImageView("/images/LayerBudget.png");
         kalori.getChildren().add(budget);
         kalori.setOnMouseClicked(e -> {
-            RincianNutrisi rincianNutrisi = new RincianNutrisi(stage, log);
+            RincianNutrisi rincianNutrisi = new RincianNutrisi(stage, log, nutrisi);
             rincianNutrisi.show();
         });
+        RincianNutrisi rincianNutrisi = new RincianNutrisi(stage, log, nutrisi);
+        ProgressBar kaloripProgressBar = new ProgressBar(rincianNutrisi.hitungKalori());
+        kaloripProgressBar.setStyle("-fx-pref-width: 200px; -fx-pref-height: 25px;");
+        kalori.getChildren().add(kaloripProgressBar);
 
         StackPane sarapan = new StackPane();
         ImageView pagi = new ImageView("/images/LayerSarapan.png");
