@@ -16,15 +16,6 @@ public class target {
             return (int) Math.floor(655.1 + (9.563  * orang.getBerat()) + (1.850 * orang.getTinggi()) - (4.676 * orang.getUmur()));
         }
     }
-    public int surplus() {
-        return (this.getKaloriDibutuh() + 500);
-    }
-    public int maintenance() {
-        return (this.getKaloriDibutuh());
-    }
-    public int defisit() {
-        return (this.getKaloriDibutuh() - 500);
-    }
 
     public int getProteinDibutuh() {
         return (int) (Math.ceil(orang.getBerat() * 2.2));
