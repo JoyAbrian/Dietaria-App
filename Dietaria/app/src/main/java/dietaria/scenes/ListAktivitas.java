@@ -97,6 +97,10 @@ public class ListAktivitas {
         
             VBox isi = new VBox(10, activityName, composContainer);
             isi.setPadding(new Insets(10, 0, 0, 10));
+            isi.setOnMouseClicked(e -> {
+                PrimaryMenu primaryMenu = new PrimaryMenu(stage, log);
+                primaryMenu.show();
+            });
             stackPane.getChildren().add(isi);
             activity.getChildren().addAll(stackPane);
         }
