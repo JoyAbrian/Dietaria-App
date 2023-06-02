@@ -43,7 +43,7 @@ public class PrimaryMenu {
         StackPane sarapan = new StackPane();
         ImageView pagi = new ImageView("/images/LayerSarapan.png");
         sarapan.setOnMouseClicked(e -> {
-            ListMakanan listMakanan = new ListMakanan(stage);
+            ListMakanan listMakanan = new ListMakanan(stage, log);
             listMakanan.show();
         });
         sarapan.getChildren().add(pagi);
@@ -51,7 +51,7 @@ public class PrimaryMenu {
         StackPane makanSiang = new StackPane();
         ImageView siang = new ImageView("/images/LayerSiang.png");
         makanSiang.setOnMouseClicked(e -> {
-            ListMakanan listMakanan = new ListMakanan(stage);
+            ListMakanan listMakanan = new ListMakanan(stage, log);
             listMakanan.show();
         });
         makanSiang.getChildren().add(siang);
@@ -59,7 +59,7 @@ public class PrimaryMenu {
         StackPane makanMalam = new StackPane();
         ImageView malam = new ImageView("/images/LayerMalam.png");
         makanMalam.setOnMouseClicked(e -> {
-            ListMakanan listMakanan = new ListMakanan(stage);
+            ListMakanan listMakanan = new ListMakanan(stage, log);
             listMakanan.show();
         });
         makanMalam.getChildren().add(malam);
@@ -67,7 +67,7 @@ public class PrimaryMenu {
         StackPane cemilan = new StackPane();
         ImageView other = new ImageView("/images/LayerCemilan.png");
         cemilan.setOnMouseClicked(e -> {
-            ListMakanan listMakanan = new ListMakanan(stage);
+            ListMakanan listMakanan = new ListMakanan(stage, log);
             listMakanan.show();
         });
         cemilan.getChildren().add(other);
@@ -75,7 +75,7 @@ public class PrimaryMenu {
         StackPane aktivitas = new StackPane();
         ImageView active = new ImageView("/images/LayerAktivitas.png");
         aktivitas.setOnMouseClicked(e -> {
-            ListAktivitas listAktivitas = new ListAktivitas(stage);
+            ListAktivitas listAktivitas = new ListAktivitas(stage, log);
             listAktivitas.show();
         });
         aktivitas.getChildren().add(active);

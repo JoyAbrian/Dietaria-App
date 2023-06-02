@@ -1,5 +1,6 @@
 package dietaria.scenes;
 
+import dietaria.models.login;
 import dietaria.models.makanan;
 import dietaria.scenes.TambahMakanan;
 
@@ -20,9 +21,11 @@ import javafx.stage.Stage;
 
 public class ListMakanan {
     private Stage stage;
+    private login log;
 
-    public ListMakanan(Stage stage) {
+    public ListMakanan(Stage stage, login log) {
         this.stage = stage;
+        this.log = log;
     }
     
     public void show() {
@@ -38,7 +41,7 @@ public class ListMakanan {
         tambah.setGraphic(btnTambah);
         tambah.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         tambah.setOnAction(e -> {
-            TambahMakanan tambahMakanan = new TambahMakanan(stage);
+            TambahMakanan tambahMakanan = new TambahMakanan(stage, log);
             tambahMakanan.show();
         });
 
@@ -50,28 +53,18 @@ public class ListMakanan {
         ImageView btnBalik = new ImageView("/images/btnBalik.png");
         balik.setGraphic(btnBalik);
         balik.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
+        balik.setOnAction(e -> {
+            PrimaryMenu primaryMenu = new PrimaryMenu(stage, log);
+            primaryMenu.show();
+        });
 
         VBox buttonBalik = new VBox(balik);
         buttonBalik.setAlignment(Pos.TOP_LEFT);
         buttonBalik.setPadding(new Insets(35, 0, 0, 10));
 
-        Label nama = new Label("Nama Makanan : ");
-        nama.setPrefWidth(100);
-        HBox pilihan = new HBox();
-        VBox makanan = new VBox(nama, pilihan);
-        makanan.setPrefHeight(649);
-        makanan.setAlignment(Pos.CENTER);
-        for (int i=0;i<5;i++) {
-            VBox opsi = new VBox();
-            Label atas = new Label(String.valueOf(i));
-            Label bawah = new Label(String.valueOf(i));
-            opsi.getChildren().addAll(atas, bawah);
-            pilihan.getChildren().add(opsi);
-        }
-        ScrollPane scrollpane = new ScrollPane(makanan);
-
-
-        layout.getChildren().addAll(buttonBalik, makanan, buttonTambah);
+        VBox allBtn = new VBox(buttonBalik, buttonTambah);
+        allBtn.setSpacing(420);
+        layout.getChildren().add(allBtn);
 
         stage.setScene(scene);
         stage.show();

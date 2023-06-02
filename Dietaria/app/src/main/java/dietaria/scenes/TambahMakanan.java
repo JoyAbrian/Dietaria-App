@@ -1,6 +1,7 @@
 package dietaria.scenes;
 
 import dietaria.dao.makananDao;
+import dietaria.models.login;
 import dietaria.models.makanan;
 import dietaria.scenes.ListMakanan;
 
@@ -18,9 +19,11 @@ import javafx.stage.Stage;
 
 public class TambahMakanan {
     private Stage stage;
+    private login log;
 
-    public TambahMakanan(Stage stage) {
+    public TambahMakanan(Stage stage, login log) {
         this.stage = stage;
+        this.log = log;
     }
 
     public void show() {
@@ -86,7 +89,7 @@ public class TambahMakanan {
                 makanan food = new makanan(textNama, 0, intKalori, intProtein, intKarbo, intLemak);
                 if (makananDao.saveMakanan(food)) {
                     System.out.println("BERHASIL TAMBAH MAKANAN");
-                    ListMakanan listMakanan = new ListMakanan(stage);
+                    ListMakanan listMakanan = new ListMakanan(stage, log);
                     listMakanan.show();    
                 } else {
                     System.out.println("ADA INPUTAN YANG KOSONG");
@@ -98,7 +101,7 @@ public class TambahMakanan {
         balik.setGraphic(buttonBalik);
         balik.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         balik.setOnAction(e -> {
-            ListMakanan listMakanan = new ListMakanan(stage);
+            ListMakanan listMakanan = new ListMakanan(stage, log);
             listMakanan.show();
         });
 

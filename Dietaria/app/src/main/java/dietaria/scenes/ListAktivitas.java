@@ -19,9 +19,11 @@ import javafx.stage.Stage;
 
 public class ListAktivitas {
     private Stage stage;
+    private login log;
 
-    public ListAktivitas(Stage stage) {
+    public ListAktivitas(Stage stage, login log) {
         this.stage = stage;
+        this.log = log;
     }
     
     public void show() {
@@ -37,7 +39,7 @@ public class ListAktivitas {
         tambah.setGraphic(btnTambah);
         tambah.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         tambah.setOnAction(e -> {
-            TambahAktivitas tambahAktivitas = new TambahAktivitas(stage);
+            TambahAktivitas tambahAktivitas = new TambahAktivitas(stage, log);
             tambahAktivitas.show();
         });
 
@@ -49,12 +51,18 @@ public class ListAktivitas {
         ImageView btnBalik = new ImageView("/images/btnBalik.png");
         balik.setGraphic(btnBalik);
         balik.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
+        balik.setOnAction(e -> {
+            PrimaryMenu primaryMenu = new PrimaryMenu(stage, log);
+            primaryMenu.show();
+        });
 
         VBox buttonBalik = new VBox(balik);
         buttonBalik.setAlignment(Pos.TOP_LEFT);
         buttonBalik.setPadding(new Insets(35, 0, 0, 10));
         
-        layout.getChildren().addAll(buttonBalik, buttonTambah);
+        VBox allBtn = new VBox(buttonBalik, buttonTambah);
+        allBtn.setSpacing(420);
+        layout.getChildren().add(allBtn);
 
         stage.setScene(scene);
         stage.show();

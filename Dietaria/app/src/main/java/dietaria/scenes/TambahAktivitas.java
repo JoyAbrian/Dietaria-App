@@ -2,6 +2,7 @@ package dietaria.scenes;
 
 import dietaria.dao.aktivitasDao;
 import dietaria.models.aktivitas;
+import dietaria.models.login;
 import dietaria.scenes.ListAktivitas;
 
 import javafx.geometry.Insets;
@@ -19,9 +20,11 @@ import javafx.stage.Stage;
 
 public class TambahAktivitas {
     private Stage stage;
+    private login log;
 
-    public TambahAktivitas(Stage stage) {
+    public TambahAktivitas(Stage stage, login log) {
         this.stage = stage;
+        this.log = log;
     }
 
     public void show() {
@@ -70,7 +73,7 @@ public class TambahAktivitas {
             aktivitas active = new aktivitas(textNama, intKalori);
             if (aktivitasDao.saveAktivitas(active)) {
                 System.out.println("BERHASIL TAMBAH AKTIVITAS");
-                ListAktivitas listAktivitas = new ListAktivitas(stage);
+                ListAktivitas listAktivitas = new ListAktivitas(stage, log);
                 listAktivitas.show();
             } else {
                 System.out.println("GAGAL TAMBAH AKTIVITAS");
@@ -82,7 +85,7 @@ public class TambahAktivitas {
         balik.setGraphic(buttonBalik);
         balik.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         balik.setOnAction(e -> {
-            ListAktivitas listAktivitas = new ListAktivitas(stage);
+            ListAktivitas listAktivitas = new ListAktivitas(stage, log);
             listAktivitas.show();
         });
 
