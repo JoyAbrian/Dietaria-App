@@ -1,10 +1,9 @@
 package dietaria;
 
 import dietaria.scenes.HomeScene;
-import dietaria.scenes.ListAktivitas;
-import dietaria.scenes.ListMakanan;
 
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -13,6 +12,7 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Dietaria");
         primaryStage.setResizable(false);
+        primaryStage.getIcons().add(new Image("/images/icon.png"));
         
         HomeScene homeScene = new HomeScene(primaryStage);
         homeScene.show();

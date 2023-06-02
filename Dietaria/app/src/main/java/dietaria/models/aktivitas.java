@@ -1,5 +1,7 @@
 package dietaria.models;
 
+import java.util.HashMap;
+
 public class aktivitas {
     private String nama;
     private int kaloriTerbakar;
@@ -20,4 +22,11 @@ public class aktivitas {
     public int getKaloriTerbakar() {
         return kaloriTerbakar;
     }
+
+    public HashMap<String, String> toHashMap() {
+
+        HashMap<String, String> attributes = new HashMap<>();
+        attributes.put("Kalori Terbakar", String.valueOf(kaloriTerbakar));
+        return attributes;
+    } 
 }

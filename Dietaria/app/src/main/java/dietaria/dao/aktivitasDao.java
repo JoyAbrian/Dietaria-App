@@ -55,8 +55,9 @@ public class aktivitasDao {
         return false;
     }
 
-    public static List<aktivitas> getAllAktivitas() {
-        List<aktivitas> aktivitasList = new ArrayList<>();
+    public static ArrayList<aktivitas> getAllAktivitas() {
+        ArrayList<aktivitas> aktivitasList = new ArrayList<>();
+        getConnection();
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM aktivitas");

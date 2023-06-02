@@ -63,8 +63,9 @@ public class makananDao {
         return false;
     }
 
-    public static List<makanan> getAllMakanan() {
-        List<makanan> makananList = new ArrayList<>();
+    public static ArrayList<makanan> getAllMakanan() {
+        ArrayList<makanan> makananList = new ArrayList<>();
+        getConnection();
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM makanan");

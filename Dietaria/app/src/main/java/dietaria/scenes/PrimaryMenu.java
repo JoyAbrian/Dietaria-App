@@ -35,10 +35,20 @@ public class PrimaryMenu {
         StackPane welcum = new StackPane();
         ImageView welcome = new ImageView("/images/LayerWelcome.png");
         welcum.getChildren().add(welcome);
+        welcum.setPadding(new Insets(0, 0, 0, 10));
+        Label halo = new Label("Welcome, " + log.getFullname());
+        halo.setFont(Font.font("BOOKMAN OLD STYLE", 25));
+        halo.setAlignment(Pos.TOP_LEFT);
+        halo.setPadding(new Insets(0, 0, 12, 0));
+        welcum.getChildren().add(halo);
 
         StackPane kalori = new StackPane();
         ImageView budget = new ImageView("/images/LayerBudget.png");
         kalori.getChildren().add(budget);
+        kalori.setOnMouseClicked(e -> {
+            RincianNutrisi rincianNutrisi = new RincianNutrisi(stage, log);
+            rincianNutrisi.show();
+        });
 
         StackPane sarapan = new StackPane();
         ImageView pagi = new ImageView("/images/LayerSarapan.png");
@@ -47,7 +57,7 @@ public class PrimaryMenu {
             listMakanan.show();
         });
         sarapan.getChildren().add(pagi);
-        
+
         StackPane makanSiang = new StackPane();
         ImageView siang = new ImageView("/images/LayerSiang.png");
         makanSiang.setOnMouseClicked(e -> {
@@ -90,7 +100,7 @@ public class PrimaryMenu {
         });
 
         VBox vBox = new VBox(welcum, kalori, sarapan, makanSiang, makanMalam, cemilan, aktivitas, logout);
-        vBox.setAlignment(Pos.CENTER);
+        vBox.setAlignment(Pos.TOP_CENTER);
         layout.getChildren().add(vBox);
 
         stage.setScene(scene);
