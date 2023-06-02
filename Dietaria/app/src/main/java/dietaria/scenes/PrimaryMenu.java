@@ -1,6 +1,7 @@
 package dietaria.scenes;
 
 import dietaria.models.login;
+import dietaria.models.makanan;
 import dietaria.utils.nutrisi;
 import dietaria.utils.target;
 import javafx.geometry.Insets;
@@ -18,10 +19,17 @@ import javafx.stage.Stage;
 public class PrimaryMenu {
     private Stage stage;
     private login log;
+    private makanan makan;
 
     public PrimaryMenu(Stage stage, login log) {
         this.stage = stage;
         this.log = log;
+    }
+    
+    public PrimaryMenu(Stage stage, login log, makanan makan) {
+        this.stage = stage;
+        this.log = log;
+        this.makan = makan;
     }
 
     public void show() {

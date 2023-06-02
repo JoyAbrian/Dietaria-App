@@ -12,12 +12,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.FocusModel;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -30,7 +26,7 @@ import javafx.stage.Stage;
 public class ListMakanan {
     private Stage stage;
     private login log;
-    private makanan makan;
+    private makanan makananPilihan;
 
     public ListMakanan(Stage stage, login log) {
         this.stage = stage;
@@ -100,6 +96,12 @@ public class ListMakanan {
         
             VBox isi = new VBox(10, foodName, composContainer);
             isi.setPadding(new Insets(10, 0, 0, 10));
+            isi.setOnMouseClicked(e -> {
+                makananPilihan = makan;
+                PrimaryMenu primaryMenu = new PrimaryMenu(stage, log, makananPilihan);
+                primaryMenu.show();
+            });
+
             stackPane.getChildren().add(isi);
             food.getChildren().addAll(stackPane);
         }
