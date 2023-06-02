@@ -16,11 +16,6 @@ public class makananDao {
     private static Connection conn;
     private static Statement stmt;
 
-    // public makananDao() {
-    //     conn = DatabaseConfig.getConnection();
-    //     setupTable();
-    // }
-
     public static void getConnection() {
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:db/dietaria.db");

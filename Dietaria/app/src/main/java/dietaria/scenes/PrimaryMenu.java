@@ -32,6 +32,10 @@ public class PrimaryMenu {
         bg.setFitWidth(scene.getWidth());
         bg.setFitHeight(scene.getHeight());
 
+        StackPane welcum = new StackPane();
+        ImageView welcome = new ImageView("/images/LayerWelcome.png");
+        welcum.getChildren().add(welcome);
+
         StackPane kalori = new StackPane();
         ImageView budget = new ImageView("/images/LayerBudget.png");
         kalori.getChildren().add(budget);
@@ -68,6 +72,14 @@ public class PrimaryMenu {
         });
         cemilan.getChildren().add(other);
 
+        StackPane aktivitas = new StackPane();
+        ImageView active = new ImageView("/images/LayerAktivitas.png");
+        aktivitas.setOnMouseClicked(e -> {
+            ListAktivitas listAktivitas = new ListAktivitas(stage);
+            listAktivitas.show();
+        });
+        aktivitas.getChildren().add(active);
+
         Button logout = new Button();
         ImageView btnLogout = new ImageView("/images/btnLogout.png");
         logout.setGraphic(btnLogout);
@@ -77,7 +89,7 @@ public class PrimaryMenu {
             homeScene.show();
         });
 
-        VBox vBox = new VBox(kalori, sarapan, makanSiang, makanMalam, cemilan, logout);
+        VBox vBox = new VBox(welcum, kalori, sarapan, makanSiang, makanMalam, cemilan, aktivitas, logout);
         vBox.setAlignment(Pos.CENTER);
         layout.getChildren().add(vBox);
 

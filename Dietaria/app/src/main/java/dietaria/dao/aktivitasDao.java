@@ -16,11 +16,6 @@ public class aktivitasDao {
     private static Connection conn;
     private static Statement stmt;
 
-    // public makananDao() {
-    //     conn = DatabaseConfig.getConnection();
-    //     setupTable();
-    // }
-
     public static void getConnection() {
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:db/dietaria.db");
@@ -36,8 +31,7 @@ public class aktivitasDao {
             String sql = "CREATE TABLE IF NOT EXISTS aktivitas " +
                     "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     " nama TEXT NOT NULL, " +
-                    " kaloriTerbakar INTEGER NOT NULL, " +
-                    " durasi INTEGER NOT NULL, ";
+                    " kaloriTerbakar INTEGER NOT NULL)";
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -47,11 +41,10 @@ public class aktivitasDao {
     public static boolean saveAktivitas(aktivitas aktivitas) {
         setupTableAktivitas();
         try {
-            String sql = "INSERT INTO makanan(nama, kaloriTerbakar, durasi) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO aktivitas(nama, kaloriTerbakar) VALUES (?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, aktivitas.getNama());
             pstmt.setInt(2, aktivitas.getKaloriTerbakar());
-            pstmt.setInt(3, aktivitas.getDurasi());
             int affectedRows = pstmt.executeUpdate();
             if (affectedRows > 0) {
                 return true;
@@ -70,8 +63,7 @@ public class aktivitasDao {
             while (rs.next()) {
                 String nama = rs.getString("nama");
                 int kaloriTerbakar = rs.getInt("kaloriTerbakar");
-                int durasi = rs.getInt("durasi");
-                aktivitasList.add(new aktivitas(nama, kaloriTerbakar, durasi));
+                aktivitasList.add(new aktivitas(nama, kaloriTerbakar));
             }
         } catch (SQLException e) {
             e.printStackTrace();

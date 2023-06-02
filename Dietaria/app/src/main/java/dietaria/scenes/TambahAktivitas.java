@@ -65,13 +65,15 @@ public class TambahAktivitas {
         tambah.setGraphic(btnTambah);
         tambah.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         tambah.setOnAction(e -> {
-            String textNama = nama.getText();
+            String textNama = name.getText();
             int intKalori = Integer.parseInt(kalori.getText());
-            aktivitas active = new aktivitas(textNama, intKalori, 0);
+            aktivitas active = new aktivitas(textNama, intKalori);
             if (aktivitasDao.saveAktivitas(active)) {
-                System.out.println("BERHASIL TAMBAH MAKANAN");
+                System.out.println("BERHASIL TAMBAH AKTIVITAS");
                 ListAktivitas listAktivitas = new ListAktivitas(stage);
                 listAktivitas.show();
+            } else {
+                System.out.println("GAGAL TAMBAH AKTIVITAS");
             }
         });
 
