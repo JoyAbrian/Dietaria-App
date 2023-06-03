@@ -26,11 +26,13 @@ import javafx.stage.Stage;
 public class ListMakanan {
     private Stage stage;
     private login log;
+    private String type;
     private makanan makananPilihan;
 
-    public ListMakanan(Stage stage, login log) {
+    public ListMakanan(Stage stage, login log, String type) {
         this.stage = stage;
         this.log = log;
+        this.type = type;
     }
     
     public void show() {
@@ -46,7 +48,7 @@ public class ListMakanan {
         tambah.setGraphic(btnTambah);
         tambah.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         tambah.setOnAction(e -> {
-            TambahMakanan tambahMakanan = new TambahMakanan(stage, log);
+            TambahMakanan tambahMakanan = new TambahMakanan(stage, log, type);
             tambahMakanan.show();
         });
 
@@ -97,7 +99,19 @@ public class ListMakanan {
             VBox isi = new VBox(10, foodName, composContainer);
             isi.setPadding(new Insets(10, 0, 0, 10));
             isi.setOnMouseClicked(e -> {
-                makananPilihan = makan;
+                if (type == "sarapan") {
+                    PrimaryMenu.addSarapan(makan);
+                    makananPilihan = makan;
+                } else if (type == "siang") {
+                    PrimaryMenu.addSiang(makan);
+                    makananPilihan = makan;
+                } else if (type == "malam") {
+                    PrimaryMenu.addMalam(makan);
+                    makananPilihan = makan;
+                } else if (type == "cemilan") {
+                    PrimaryMenu.addCemilan(makan);
+                    makananPilihan = makan;
+                }
                 PrimaryMenu primaryMenu = new PrimaryMenu(stage, log, makananPilihan);
                 primaryMenu.show();
             });

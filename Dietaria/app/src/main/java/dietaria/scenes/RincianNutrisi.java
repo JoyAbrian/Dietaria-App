@@ -1,5 +1,6 @@
 package dietaria.scenes;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -41,6 +42,8 @@ public class RincianNutrisi {
             PrimaryMenu primaryMenu = new PrimaryMenu(stage, log);
             primaryMenu.show();
         });
+        VBox btnBack = new VBox(back);
+        btnBack.setPadding(new Insets(0, 0, 0, 42));
 
         target targetNutrition = new target(log);
         Label kaloriLabel = new Label("Kalori: " + nutritionData.getTotalKalori() + " / " + targetNutrition.getKaloriDibutuh());
@@ -62,7 +65,7 @@ public class RincianNutrisi {
         karbohidratBar.setStyle("-fx-pref-width: 200px; -fx-pref-height: 25px;");
         lemakIndicator.setStyle("-fx-pref-width: 200px; -fx-pref-height: 25px;");
 
-        VBox vBox = new VBox(kaloriLabel, kaloriBar, proteinLabel, proteinBar, karbohidratLabel, karbohidratBar, lemakLabel, lemakIndicator, back);
+        VBox vBox = new VBox(kaloriLabel, kaloriBar, proteinLabel, proteinBar, karbohidratLabel, karbohidratBar, lemakLabel, lemakIndicator, btnBack);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(10);
         layout.getChildren().add(vBox);
