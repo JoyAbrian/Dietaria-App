@@ -13,7 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class HomeScene {
+public class HomeScene implements ShowMethod {
     private Stage stage;
     
     public HomeScene(Stage stage) {

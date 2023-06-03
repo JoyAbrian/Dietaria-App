@@ -27,9 +27,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class ListAktivitas {
+public class ListAktivitas implements ShowMethod {
     private Stage stage;
     private login log;
+    private aktivitas aktivitasPilihan;
 
     public ListAktivitas(Stage stage, login log) {
         this.stage = stage;
@@ -98,7 +99,9 @@ public class ListAktivitas {
             VBox isi = new VBox(10, activityName, composContainer);
             isi.setPadding(new Insets(10, 0, 0, 10));
             isi.setOnMouseClicked(e -> {
-                PrimaryMenu primaryMenu = new PrimaryMenu(stage, log);
+                PrimaryMenu.addAktivitas(aktif);
+                aktivitasPilihan = aktif;
+                PrimaryMenu primaryMenu = new PrimaryMenu(stage, log, aktif);
                 primaryMenu.show();
             });
             stackPane.getChildren().add(isi);

@@ -17,13 +17,15 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class TambahMakanan {
+public class TambahMakanan implements ShowMethod {
     private Stage stage;
     private login log;
+    private String type;
 
-    public TambahMakanan(Stage stage, login log) {
+    public TambahMakanan(Stage stage, login log, String type) {
         this.stage = stage;
         this.log = log;
+        this.type = type;
     }
 
     public void show() {
@@ -89,7 +91,7 @@ public class TambahMakanan {
                 makanan food = new makanan(textNama, 0, intKalori, intProtein, intKarbo, intLemak);
                 if (makananDao.saveMakanan(food)) {
                     System.out.println("BERHASIL TAMBAH MAKANAN");
-                    ListMakanan listMakanan = new ListMakanan(stage, log);
+                    ListMakanan listMakanan = new ListMakanan(stage, log, type);
                     listMakanan.show();    
                 } else {
                     System.out.println("ADA INPUTAN YANG KOSONG");
@@ -101,7 +103,7 @@ public class TambahMakanan {
         balik.setGraphic(buttonBalik);
         balik.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         balik.setOnAction(e -> {
-            ListMakanan listMakanan = new ListMakanan(stage, log);
+            ListMakanan listMakanan = new ListMakanan(stage, log, type);
             listMakanan.show();
         });
 

@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class LoginMenu {
+public class LoginMenu implements ShowMethod {
     private Stage stage;
 
     public LoginMenu(Stage stage) {
