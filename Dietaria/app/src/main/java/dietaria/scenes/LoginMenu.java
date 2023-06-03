@@ -2,6 +2,7 @@ package dietaria.scenes;
 
 import dietaria.dao.loginDao;
 import dietaria.models.login;
+import dietaria.models.totalNutrisi;
 import dietaria.scenes.HomeScene;
 
 import javafx.geometry.Insets;
@@ -71,7 +72,8 @@ public class LoginMenu implements ShowMethod {
             if (user == null) {
                 System.out.println("Gagal Login");
             } else {
-                PrimaryMenu primaryMenu = new PrimaryMenu(stage, user);
+                totalNutrisi total = new totalNutrisi();
+                PrimaryMenu primaryMenu = new PrimaryMenu(stage, user, total);
                 primaryMenu.show();
             }
         });

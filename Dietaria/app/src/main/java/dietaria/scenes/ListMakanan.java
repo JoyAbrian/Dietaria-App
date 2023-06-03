@@ -6,6 +6,7 @@ import java.util.HashMap;
 import dietaria.dao.makananDao;
 import dietaria.models.login;
 import dietaria.models.makanan;
+import dietaria.models.totalNutrisi;
 import dietaria.scenes.TambahMakanan;
 
 import javafx.geometry.Insets;
@@ -28,11 +29,13 @@ public class ListMakanan implements ShowMethod {
     private login log;
     private String type;
     private makanan makananPilihan;
+    private totalNutrisi total;
 
-    public ListMakanan(Stage stage, login log, String type) {
+    public ListMakanan(Stage stage, login log, String type, totalNutrisi total) {
         this.stage = stage;
         this.log = log;
         this.type = type;
+        this.total = total;
     }
     
     public void show() {
@@ -48,7 +51,7 @@ public class ListMakanan implements ShowMethod {
         tambah.setGraphic(btnTambah);
         tambah.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         tambah.setOnAction(e -> {
-            TambahMakanan tambahMakanan = new TambahMakanan(stage, log, type);
+            TambahMakanan tambahMakanan = new TambahMakanan(stage, log, type, total);
             tambahMakanan.show();
         });
 
@@ -61,7 +64,7 @@ public class ListMakanan implements ShowMethod {
         balik.setGraphic(btnBalik);
         balik.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         balik.setOnAction(e -> {
-            PrimaryMenu primaryMenu = new PrimaryMenu(stage, log);
+            PrimaryMenu primaryMenu = new PrimaryMenu(stage, log, total);
             primaryMenu.show();
         });
 
@@ -112,7 +115,8 @@ public class ListMakanan implements ShowMethod {
                     PrimaryMenu.addCemilan(makan);
                     makananPilihan = makan;
                 }
-                PrimaryMenu primaryMenu = new PrimaryMenu(stage, log, makananPilihan);
+                total.addMakanan(makan);
+                PrimaryMenu primaryMenu = new PrimaryMenu(stage, log, makananPilihan, total);
                 primaryMenu.show();
             });
 

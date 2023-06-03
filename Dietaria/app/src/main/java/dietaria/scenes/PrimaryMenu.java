@@ -4,7 +4,6 @@ import dietaria.models.aktivitas;
 import dietaria.models.login;
 import dietaria.models.makanan;
 import dietaria.models.totalNutrisi;
-import dietaria.utils.nutrisi;
 import dietaria.utils.target;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -29,6 +28,7 @@ public class PrimaryMenu implements ShowMethod {
     private login log;
     private makanan makan;
     private aktivitas aktivity;
+    private totalNutrisi total;
     private static ObservableList<makanan> listSarapan = FXCollections.observableArrayList();
     private static ObservableList<makanan> listSiang = FXCollections.observableArrayList();
     private static ObservableList<makanan> listMalam = FXCollections.observableArrayList();
@@ -54,16 +54,18 @@ public class PrimaryMenu implements ShowMethod {
     public static void addAktivitas(aktivitas aktivitas){
         listAktivitas.add(aktivitas);
     }
-
-    public PrimaryMenu(Stage stage, login log) {
+    
+    public PrimaryMenu(Stage stage, login log, totalNutrisi total) {
         this.stage = stage;
         this.log = log;
+        this.total = total;
     }
-    
-    public PrimaryMenu(Stage stage, login log, makanan makan) {
+
+    public PrimaryMenu(Stage stage, login log, makanan makan, totalNutrisi total) {
         this.stage = stage;
         this.log = log;
         this.makan = makan;
+        this.total = total;
     }
 
     public PrimaryMenu(Stage stage, login log, aktivitas aktivity) {
@@ -90,16 +92,14 @@ public class PrimaryMenu implements ShowMethod {
         halo.setPadding(new Insets(0, 0, 12, 0));
         welcum.getChildren().add(halo);
 
-        totalNutrisi nutrisi = new totalNutrisi();
-
         StackPane kalori = new StackPane();
         ImageView budget = new ImageView("/images/LayerBudget.png");
         kalori.getChildren().add(budget);
         kalori.setOnMouseClicked(e -> {
-            RincianNutrisi rincianNutrisi = new RincianNutrisi(stage, log, nutrisi);
+            RincianNutrisi rincianNutrisi = new RincianNutrisi(stage, log, total);
             rincianNutrisi.show();
         });
-        RincianNutrisi rincianNutrisi = new RincianNutrisi(stage, log, nutrisi);
+        RincianNutrisi rincianNutrisi = new RincianNutrisi(stage, log, total);
         ProgressBar kaloripProgressBar = new ProgressBar(rincianNutrisi.hitungKalori());
         kaloripProgressBar.setStyle("-fx-pref-width: 200px; -fx-pref-height: 25px;");
         kalori.getChildren().add(kaloripProgressBar);
@@ -109,7 +109,7 @@ public class PrimaryMenu implements ShowMethod {
         sarapan.setAlignment(Pos.CENTER);
         ImageView pagi = new ImageView("/images/LayerSarapan.png");
         sarapan.setOnMouseClicked(e -> {
-            ListMakanan listMakanan = new ListMakanan(stage, log, "sarapan");
+            ListMakanan listMakanan = new ListMakanan(stage, log, "sarapan", total);
             listMakanan.show();
         });
         sarapan.getChildren().add(pagi);
@@ -122,7 +122,7 @@ public class PrimaryMenu implements ShowMethod {
         VBox makanSiang = new VBox();
         ImageView siang = new ImageView("/images/LayerSiang.png");
         makanSiang.setOnMouseClicked(e -> {
-            ListMakanan listMakanan = new ListMakanan(stage, log, "siang");
+            ListMakanan listMakanan = new ListMakanan(stage, log, "siang", total);
             listMakanan.show();
         });
         makanSiang.getChildren().add(siang);
@@ -130,12 +130,13 @@ public class PrimaryMenu implements ShowMethod {
         for (makanan m : listSiang) {
             Label l = new Label(m.getNama());
             makanSiang.getChildren().add(l);
+            makanSiang.setAlignment(Pos.CENTER);
         }
 
         VBox makanMalam = new VBox();
         ImageView malam = new ImageView("/images/LayerMalam.png");
         makanMalam.setOnMouseClicked(e -> {
-            ListMakanan listMakanan = new ListMakanan(stage, log, "malam");
+            ListMakanan listMakanan = new ListMakanan(stage, log, "malam", total);
             listMakanan.show();
         });
         makanMalam.getChildren().add(malam);
@@ -143,12 +144,13 @@ public class PrimaryMenu implements ShowMethod {
         for (makanan m : listMalam) {
             Label l = new Label(m.getNama());
             makanMalam.getChildren().add(l);
+            makanMalam.setAlignment(Pos.CENTER);
         }
 
         VBox cemilan = new VBox();
         ImageView other = new ImageView("/images/LayerCemilan.png");
         cemilan.setOnMouseClicked(e -> {
-            ListMakanan listMakanan = new ListMakanan(stage, log, "cemilan");
+            ListMakanan listMakanan = new ListMakanan(stage, log, "cemilan", total);
             listMakanan.show();
         });
         cemilan.getChildren().add(other);
@@ -156,20 +158,21 @@ public class PrimaryMenu implements ShowMethod {
         for (makanan m : listCemilan) {
             Label l = new Label(m.getNama());
             cemilan.getChildren().add(l);
+            cemilan.setAlignment(Pos.CENTER);
         }
 
-        VBox aktivitas = new VBox();
-        ImageView active = new ImageView("/images/LayerAktivitas.png");
-        aktivitas.setOnMouseClicked(e -> {
-            ListAktivitas listAktivitas = new ListAktivitas(stage, log);
-            listAktivitas.show();
-        });
-        aktivitas.getChildren().add(active);
+        // VBox aktivitas = new VBox();
+        // ImageView active = new ImageView("/images/LayerAktivitas.png");
+        // aktivitas.setOnMouseClicked(e -> {
+        //     ListAktivitas listAktivitas = new ListAktivitas(stage, log, total);
+        //     listAktivitas.show();
+        // });
+        // aktivitas.getChildren().add(active);
 
-        for (aktivitas m : listAktivitas) {
-            Label l = new Label(m.getNama());
-            aktivitas.getChildren().add(l);
-        }
+        // for (aktivitas m : listAktivitas) {
+        //     Label l = new Label(m.getNama());
+        //     aktivitas.getChildren().add(l);
+        // }
 
         Button logout = new Button();
         ImageView btnLogout = new ImageView("/images/btnLogout.png");
@@ -180,7 +183,7 @@ public class PrimaryMenu implements ShowMethod {
             homeScene.show();
         });
 
-        VBox listType = new VBox(sarapan, makanSiang, makanMalam, cemilan, aktivitas, logout);
+        VBox listType = new VBox(sarapan, makanSiang, makanMalam, cemilan, logout);
         
         ScrollPane scrollPane = new ScrollPane(listType);
         scrollPane.setMaxWidth(500);

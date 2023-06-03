@@ -1,6 +1,5 @@
 package dietaria.models;
 
-import dietaria.utils.nutrisi;
 
 public class totalNutrisi {
     private int totalKalori;
@@ -48,18 +47,9 @@ public class totalNutrisi {
     }
 
     public void addMakanan(makanan food) {
-        nutrisi calculator = new nutrisi();
-        totalKalori += calculator.kalkulasiKalori(food);
-        totalProtein += calculator.kalkulasiProtein(food);
-        totalKarbo += calculator.kalkulasiKarbohidrat(food);
-        totalLemak += calculator.kalkulasiLemak(food);
-    }
-
-    public void removeMakanan(makanan food) {
-        nutrisi calculator = new nutrisi();
-        totalKalori -= calculator.kalkulasiKalori(food);
-        totalProtein -= calculator.kalkulasiProtein(food);
-        totalKarbo -= calculator.kalkulasiKarbohidrat(food);
-        totalLemak -= calculator.kalkulasiLemak(food);
+        totalKalori += food.getKalori();
+        totalProtein += food.getProtein();
+        totalKarbo += food.getKarbohidrat();
+        totalLemak += food.getLemak();
     }
 }
