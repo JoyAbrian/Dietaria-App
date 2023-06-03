@@ -19,7 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class RegisterMenu1 {
+public class RegisterMenu1 implements ShowMethod {
     private Stage stage;
 
     public RegisterMenu1(Stage stage) {

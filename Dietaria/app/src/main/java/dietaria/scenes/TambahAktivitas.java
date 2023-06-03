@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class TambahAktivitas {
+public class TambahAktivitas implements ShowMethod {
     private Stage stage;
     private login log;
 

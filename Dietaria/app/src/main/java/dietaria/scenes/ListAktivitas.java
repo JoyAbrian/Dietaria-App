@@ -27,7 +27,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class ListAktivitas {
+public class ListAktivitas implements ShowMethod {
     private Stage stage;
     private login log;
     private aktivitas aktivitasPilihan;

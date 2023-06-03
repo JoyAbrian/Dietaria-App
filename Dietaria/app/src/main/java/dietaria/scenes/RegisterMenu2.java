@@ -16,7 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class RegisterMenu2 {
+public class RegisterMenu2 implements ShowMethod {
     private Stage stage;
     private login log;
 

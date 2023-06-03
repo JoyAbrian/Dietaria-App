@@ -23,7 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class ListMakanan {
+public class ListMakanan implements ShowMethod {
     private Stage stage;
     private login log;
     private String type;

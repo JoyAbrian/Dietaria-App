@@ -13,7 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class RegisterMenu3 {
+public class RegisterMenu3 implements ShowMethod {
     private Stage stage;
 
     public RegisterMenu3(Stage stage, login log) {

@@ -24,7 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class PrimaryMenu {
+public class PrimaryMenu implements ShowMethod {
     private Stage stage;
     private login log;
     private makanan makan;

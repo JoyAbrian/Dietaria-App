@@ -15,7 +15,7 @@ import dietaria.models.login;
 import dietaria.models.totalNutrisi;
 import dietaria.utils.target;
 
-public class RincianNutrisi {
+public class RincianNutrisi implements ShowMethod {
     private Stage stage;
     private login log;
     private totalNutrisi nutritionData;

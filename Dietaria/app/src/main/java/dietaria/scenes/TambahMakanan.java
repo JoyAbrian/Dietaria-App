@@ -17,7 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class TambahMakanan {
+public class TambahMakanan implements ShowMethod {
     private Stage stage;
     private login log;
     private String type;
