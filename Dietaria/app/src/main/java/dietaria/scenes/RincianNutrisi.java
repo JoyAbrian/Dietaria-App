@@ -18,12 +18,12 @@ import dietaria.utils.target;
 public class RincianNutrisi implements ShowMethod {
     private Stage stage;
     private login log;
-    private totalNutrisi nutritionData;
+    private totalNutrisi total;
 
-    public RincianNutrisi(Stage stage, login log, totalNutrisi nutritionData) {
+    public RincianNutrisi(Stage stage, login log, totalNutrisi total) {
         this.stage = stage;
         this.log = log;
-        this.nutritionData = nutritionData;
+        this.total = total;
     }
 
     public void show() {
@@ -39,26 +39,26 @@ public class RincianNutrisi implements ShowMethod {
         back.setGraphic(buttonBack);
         back.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         back.setOnAction(e -> {
-            PrimaryMenu primaryMenu = new PrimaryMenu(stage, log);
+            PrimaryMenu primaryMenu = new PrimaryMenu(stage, log, total);
             primaryMenu.show();
         });
         VBox btnBack = new VBox(back);
         btnBack.setPadding(new Insets(0, 0, 0, 42));
 
         target targetNutrition = new target(log);
-        Label kaloriLabel = new Label("Kalori: " + nutritionData.getTotalKalori() + " / " + targetNutrition.getKaloriDibutuh());
+        Label kaloriLabel = new Label("Kalori: " + total.getTotalKalori() + " / " + targetNutrition.getKaloriDibutuh());
         kaloriLabel.setStyle("-fx-font-size: 14px;");
-        Label proteinLabel = new Label("Protein: " + nutritionData.getTotalProtein() + " / " + targetNutrition.getProteinDibutuh());
+        Label proteinLabel = new Label("Protein: " + total.getTotalProtein() + " / " + targetNutrition.getProteinDibutuh());
         proteinLabel.setStyle("-fx-font-size: 14px;");
-        Label karbohidratLabel = new Label("Karbohidrat: " + nutritionData.getTotalKarbo() + " / " + targetNutrition.getKarbohidratDibutuh());
+        Label karbohidratLabel = new Label("Karbohidrat: " + total.getTotalKarbo() + " / " + targetNutrition.getKarbohidratDibutuh());
         karbohidratLabel.setStyle("-fx-font-size: 14px;");
-        Label lemakLabel = new Label("Lemak: " + nutritionData.getTotalLemak() + " / " + targetNutrition.getLemakDibutuh());
+        Label lemakLabel = new Label("Lemak: " + total.getTotalLemak() + " / " + targetNutrition.getLemakDibutuh());
         lemakLabel.setStyle("-fx-font-size: 14px;");
 
-        ProgressBar kaloriBar = new ProgressBar(nutritionData.getTotalKalori() / (double) targetNutrition.getKaloriDibutuh());
-        ProgressBar proteinBar = new ProgressBar(nutritionData.getTotalProtein() / (double) targetNutrition.getProteinDibutuh());
-        ProgressBar karbohidratBar = new ProgressBar(nutritionData.getTotalKarbo() / (double) targetNutrition.getKarbohidratDibutuh());
-        ProgressBar lemakIndicator = new ProgressBar(nutritionData.getTotalLemak() / (double) targetNutrition.getLemakDibutuh());
+        ProgressBar kaloriBar = new ProgressBar(total.getTotalKalori() / (double) targetNutrition.getKaloriDibutuh());
+        ProgressBar proteinBar = new ProgressBar(total.getTotalProtein() / (double) targetNutrition.getProteinDibutuh());
+        ProgressBar karbohidratBar = new ProgressBar(total.getTotalKarbo() / (double) targetNutrition.getKarbohidratDibutuh());
+        ProgressBar lemakIndicator = new ProgressBar(total.getTotalLemak() / (double) targetNutrition.getLemakDibutuh());
         
         kaloriBar.setStyle("-fx-pref-width: 200px; -fx-pref-height: 25px;");
         proteinBar.setStyle("-fx-pref-width: 200px; -fx-pref-height: 25px;");
@@ -76,6 +76,6 @@ public class RincianNutrisi implements ShowMethod {
 
     public double hitungKalori() {
         target targetNutrition = new target(log);
-        return nutritionData.getTotalKalori() / (double) targetNutrition.getKaloriDibutuh();
+        return total.getTotalKalori() / (double) targetNutrition.getKaloriDibutuh();
     }
 }

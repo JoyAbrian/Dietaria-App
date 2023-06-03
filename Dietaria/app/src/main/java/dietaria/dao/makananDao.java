@@ -71,12 +71,12 @@ public class makananDao {
             ResultSet rs = stmt.executeQuery("SELECT * FROM makanan");
             while (rs.next()) {
                 String nama = rs.getString("nama");
-                int porsi = rs.getInt("porsi");
+                int porsi = 100;
                 int kalori = rs.getInt("kalori");
                 int protein = rs.getInt("protein");
                 int karbohidrat = rs.getInt("karbohidrat");
                 int lemak = rs.getInt("lemak");
-                makananList.add(new makanan(nama, porsi, kalori, protein, karbohidrat, lemak));
+                makananList.add(new makanan(nama, kalori, protein, karbohidrat, lemak));
             }
         } catch (SQLException e) {
             e.printStackTrace();

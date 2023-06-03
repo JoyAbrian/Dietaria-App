@@ -3,6 +3,7 @@ package dietaria.scenes;
 import dietaria.dao.makananDao;
 import dietaria.models.login;
 import dietaria.models.makanan;
+import dietaria.models.totalNutrisi;
 import dietaria.scenes.ListMakanan;
 
 import javafx.geometry.Insets;
@@ -21,11 +22,13 @@ public class TambahMakanan implements ShowMethod {
     private Stage stage;
     private login log;
     private String type;
+    private totalNutrisi total;
 
-    public TambahMakanan(Stage stage, login log, String type) {
+    public TambahMakanan(Stage stage, login log, String type, totalNutrisi total) {
         this.stage = stage;
         this.log = log;
         this.type = type;
+        this.total = total;
     }
 
     public void show() {
@@ -88,10 +91,10 @@ public class TambahMakanan implements ShowMethod {
                 int intProtein = Integer.parseInt(protein.getText());
                 int intKarbo = Integer.parseInt(karbo.getText());
                 int intLemak = Integer.parseInt(lemak.getText());
-                makanan food = new makanan(textNama, 0, intKalori, intProtein, intKarbo, intLemak);
+                makanan food = new makanan(textNama, intKalori, intProtein, intKarbo, intLemak);
                 if (makananDao.saveMakanan(food)) {
                     System.out.println("BERHASIL TAMBAH MAKANAN");
-                    ListMakanan listMakanan = new ListMakanan(stage, log, type);
+                    ListMakanan listMakanan = new ListMakanan(stage, log, type, total);
                     listMakanan.show();    
                 } else {
                     System.out.println("ADA INPUTAN YANG KOSONG");
@@ -103,7 +106,7 @@ public class TambahMakanan implements ShowMethod {
         balik.setGraphic(buttonBalik);
         balik.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
         balik.setOnAction(e -> {
-            ListMakanan listMakanan = new ListMakanan(stage, log, type);
+            ListMakanan listMakanan = new ListMakanan(stage, log, type, total);
             listMakanan.show();
         });
 
